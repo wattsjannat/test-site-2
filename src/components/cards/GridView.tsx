@@ -24,6 +24,9 @@ import {
     RelationshipCard, CountryCard, DataClusterCard, CalendarCard,
     // Special Components (1)
     AvatarScreen,
+    // Trainco Cards (7)
+    JobCard, CircularGaugeCard, SkillProgressCard, PathTrackCard,
+    LevelMeterCard, TrendLineCard, SimpleProgressCard,
 } from '@/components/cards';
 
 /* ═══════════════════════════════════════════════════════════
@@ -88,6 +91,14 @@ const CARD_MAP: Record<string, React.FC<any>> = {
     'calendar': CalendarCard,
     // Special Components (1)
     'avatar-screen': AvatarScreen,
+    // Trainco Cards (7)
+    'job-card': JobCard,
+    'circular-gauge': CircularGaugeCard,
+    'skill-progress': SkillProgressCard,
+    'path-track': PathTrackCard,
+    'level-meter': LevelMeterCard,
+    'trend-line': TrendLineCard,
+    'simple-progress': SimpleProgressCard,
     // Aliases — common hallucinated type names
     'profile-roster': OrgRoster,
     'area-chart': LineChart,
@@ -117,6 +128,9 @@ const CARD_SIZE: Record<string, number> = {
     'relationship-card': 2, 'country-card': 2,
     // Special Components
     'avatar-screen': 3,
+    // Trainco Cards
+    'job-card': 2, 'circular-gauge': 2, 'skill-progress': 2,
+    'path-track': 2, 'level-meter': 2, 'trend-line': 2, 'simple-progress': 2,
 };
 
 function getRowWeight(rowCards: CardDef[]): number {
