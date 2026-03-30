@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
-    "tele-local": "next dev"
+    "start": "NODE_ENV=production node server.js",
+    "tele-local": "node server.js"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.7",
