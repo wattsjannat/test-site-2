@@ -43,3 +43,6 @@ export { RelationshipCard } from './RelationshipCard';
 export { CountryCard } from './CountryCard';
 export { DataClusterCard } from './DataClusterCard';
 export { CalendarCard } from './CalendarCard';
+
+// Special Components (1)
+export { AvatarScreen } from './AvatarScreen';

@@ -104,6 +104,7 @@ export const DSL_SCHEMA: Record<string, { pipeCount: number; fields: string[] }>
     'image-card':        { pipeCount: 3, fields: ['imageUrl','caption','subtitle'] },
     'calendar':          { pipeCount: 1, fields: ['title'] },
     'cal-event':         { pipeCount: 5, fields: ['title','date','time','duration','status'] },
+    'avatar-screen':     { pipeCount: 5, fields: ['question','questionWide','progressStep','progressTotal','showProgress'] },
     'risk-matrix':       { pipeCount: 1, fields: ['title'] },
     'risk':              { pipeCount: 3, fields: ['label','likelihood','impact'] },
     'stacked-bar':       { pipeCount: 2, fields: ['title','unit'] },
@@ -148,6 +149,7 @@ const ALL_ITEM_PREFIXES = new Set(Object.values(CONTAINER_ITEM_PREFIXES));
 const FLAT_TYPES        = new Set([
     'stat', 'callout', 'person-card', 'relationship-card',
     'incident-card', 'info-card', 'country-card', 'image-card',
+    'avatar-screen',
 ]);
 
 // ── Item parsers ──────────────────────────────────────────────────────────────
@@ -320,6 +322,15 @@ function parseFlatCard(type: string, fields: string[], span?: 'full'): CardDef |
         case 'image-card': {
             const [imageUrl, caption, subtitle] = fields;
             return Object.assign(card, { imageUrl: n(imageUrl), caption: n(caption), subtitle: n(subtitle) });
+        }
+        case 'avatar-screen': {
+            const [question, questionWideStr, progressStepStr, progressTotalStr, showProgressStr] = fields;
+            const item: CardDef = Object.assign(card, { question: n(question) });
+            if (b(questionWideStr)) item.questionWide = true;
+            if (n(progressStepStr)) item.progressStep = parseInt(n(progressStepStr) ?? '0', 10);
+            if (n(progressTotalStr)) item.progressTotal = parseInt(n(progressTotalStr) ?? '4', 10);
+            if (n(showProgressStr)) item.showProgress = b(showProgressStr);
+            return item;
         }
         default:
             return null;

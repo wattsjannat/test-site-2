@@ -22,6 +22,8 @@ import {
     DecisionCard, DelegationCard,
     // Cross-Domain Intelligence (4)
     RelationshipCard, CountryCard, DataClusterCard, CalendarCard,
+    // Special Components (1)
+    AvatarScreen,
 } from '@/components/cards';
 
 /* ═══════════════════════════════════════════════════════════
@@ -84,6 +86,8 @@ const CARD_MAP: Record<string, React.FC<any>> = {
     'country-card': CountryCard,
     'data-cluster': DataClusterCard,
     'calendar': CalendarCard,
+    // Special Components (1)
+    'avatar-screen': AvatarScreen,
     // Aliases — common hallucinated type names
     'profile-roster': OrgRoster,
     'area-chart': LineChart,
@@ -111,6 +115,8 @@ const CARD_SIZE: Record<string, number> = {
     'decision-card': 2, 'delegation-card': 2,
     // Cross-Domain Intelligence
     'relationship-card': 2, 'country-card': 2,
+    // Special Components
+    'avatar-screen': 3,
 };
 
 function getRowWeight(rowCards: CardDef[]): number {
