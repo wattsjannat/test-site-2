@@ -33,6 +33,30 @@ export default function RootLayout({
           rel="stylesheet"
         />
         
+        {/* Mock API Interceptor for Static Export */}
+        <Script
+          id="mock-api-interceptor"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{__html: `
+            (function() {
+              if (typeof window === 'undefined') return;
+              const originalFetch = window.fetch;
+              window.fetch = async function(input, init) {
+                const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+                if (url.includes('/api/invoke/')) {
+                  const toolName = url.split('/api/invoke/')[1].split('?')[0];
+                  await new Promise(resolve => setTimeout(resolve, 100));
+                  return new Response(JSON.stringify({ success: true, data: {} }), {
+                    status: 200,
+                    headers: { 'Content-Type': 'application/json' },
+                  });
+                }
+                return originalFetch(input, init);
+              };
+            })();
+          `}}
+        />
+        
         {/* UIFramework Configuration */}
         <Script
           id="uiframework-config"
