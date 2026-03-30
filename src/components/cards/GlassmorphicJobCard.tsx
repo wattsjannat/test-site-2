@@ -9,16 +9,7 @@ const SaudiRiyalIcon = () => (
   </svg>
 );
 
-interface JobListing {
-  id: string;
-  title: string;
-  company: string;
-  companyLogo?: string;
-  salaryRange?: string;
-  location?: string;
-  matchScore?: number;
-  fitCategory?: 'excellent' | 'good' | 'fair' | 'poor';
-}
+import type { JobListing } from '@/types/flow';
 
 interface GlassmorphicJobCardProps {
   job: JobListing;
